@@ -4,15 +4,14 @@ package com.alibado.asroute
 	 * ...
 	 * @author clifford.cheny
 	 */
-	public class AndState extends ComplexState
+	public class OrState extends ComplexState
 	{
-		
-		public function AndState(name:String)
+		public function OrState(name:String)
 		{
 			super(name);
 		}
 		
-		private function unselectChildren():void
+		internal function cancelChildrenSelect():void
 		{
 			if (!_children) return;
 			for (var n:String in _children)
@@ -25,7 +24,7 @@ package com.alibado.asroute
 		{
 			if (selected)
 			{
-				unselectChildren();
+				cancelChildrenSelect();
 				super.unselect();
 			}
 		}
