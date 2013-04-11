@@ -6,6 +6,7 @@ package com.alibado.asroute
 	 */
 	public class OrState extends ComplexState
 	{
+		
 		public function OrState(name:String)
 		{
 			super(name);
@@ -20,7 +21,7 @@ package com.alibado.asroute
 			}
 		}
 		
-		override protected function unselect():void
+		override internal function unselect():void
 		{
 			if (selected)
 			{

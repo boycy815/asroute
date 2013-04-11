@@ -21,7 +21,7 @@ package com.alibado.asroute
 			}
 		}
 		
-		override protected function unselect():void
+		override internal function unselect():void
 		{
 			if (selected)
 			{
