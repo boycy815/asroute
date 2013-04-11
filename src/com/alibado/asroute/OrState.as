@@ -20,15 +20,6 @@ package com.alibado.asroute
 				_children[n].unselect();
 			}
 		}
-		
-		override internal function unselect():void
-		{
-			if (selected)
-			{
-				cancelChildrenSelect();
-				super.unselect();
-			}
-		}
 	}
 
 }

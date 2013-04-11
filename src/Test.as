@@ -1,6 +1,5 @@
 package 
 {
-	import com.alibado.asroute.AndState;
 	import com.alibado.asroute.ComplexState;
 	import com.alibado.asroute.LeafState;
 	import com.alibado.asroute.OrState;
@@ -27,7 +26,7 @@ package
 			
 			var a:LeafState = new LeafState("a");
 			var b:LeafState = new LeafState("b");
-			var c:ComplexState = new AndState("c");
+			var c:ComplexState = new ComplexState("c");
 			var d:LeafState = new LeafState("d");
 			var e:LeafState = new LeafState("e");
 			var f:ComplexState = new OrState("f");

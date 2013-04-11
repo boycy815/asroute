@@ -42,6 +42,19 @@ package com.alibado.asroute
 		{
 			return _count;
 		}
+		
+		override internal function unselect():void
+		{
+			if (selected)
+			{
+				if (!_children) return;
+				for (var n:String in _children)
+				{
+					_children[n].unselect();
+				}
+				super.unselect();
+			}
+		}
 	}
 
 }
