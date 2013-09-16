@@ -59,6 +59,11 @@ package
 			empty.addEventListener(StateEventConst.ENTER, function(e:Event):void { trace("empty enter") } );
 			empty.addEventListener(StateEventConst.EXIT, function(e:Event):void { trace("empty exit") } );
 			
+			//自定义状态机跳转测试
+			//inited.addEventListener(StateEventConst.ENTER, function(e:Event):void { close.select() } );
+			//streaming.addEventListener(StateEventConst.ENTER, function(e:Event):void { close.select() } );
+			//play.addEventListener(StateEventConst.EXIT, function(e:Event):void { play.select() } );
+			
 			var ui:TextField = new TextField();
 			addChild(ui);
 			ui.width = 800;

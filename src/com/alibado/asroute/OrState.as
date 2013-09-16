@@ -11,20 +11,15 @@ package com.alibado.asroute
 			super(parent);
 		}
 		
-		override protected function selectFromChild(child:State):void
+		override protected function selectFromChild():Boolean
 		{
 			if (_selected)
 			{
-				var l:int = _children.length;
-				for (var i:int = 0; i < l; i++)
-				{
-					if (_children[i] != child)
-						_children[i].unselect();
-				}
+				return unselectChildren();
 			}
 			else
 			{
-				select();
+				return select();
 			}
 		}
 	}

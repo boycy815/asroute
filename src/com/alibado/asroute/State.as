@@ -21,18 +21,18 @@ package com.alibado.asroute
 			if (parent)
 			{
 				parent._children.push(this);
+				_parent = parent;
 			}
-			_parent = parent;
 		}
 		
-		public function select():void 
+		public function select():Boolean 
 		{
-			if (!_selected)
+			if (selectParent() && !_selected)
 			{
-				selectParent();
 				_selected = true;
 				dispatchEvent(new Event(StateEventConst.ENTER));
 			}
+			return _selected;
 		}
 		
 		public function get selected():Boolean 
@@ -40,36 +40,55 @@ package com.alibado.asroute
 			return _selected;
 		}
 		
-		internal function unselect():void
+		internal function unselect():Boolean
 		{
-			if (_selected)
+			if (unselectChildren() && _selected)
 			{
-				unselectChildren();
 				_selected = false;
 				dispatchEvent(new Event(StateEventConst.EXIT));
 			}
+			return !_selected;
 		}
 		
-		protected function unselectChildren():void
+		protected function unselectChildren():Boolean
 		{
-			var l:int = _children.length;
-			for (var i:int = 0; i < l; i++)
+			for (var i:int = 0; i < _children.length; i++)
 			{
-				_children[i].unselect();
+				if (_selected)
+				{
+					_children[i].unselect();
+				}
 			}
+			var l:int = _children.length;
+			for (i = 0; i < l; i++)
+			{
+				if (_children[i].selected)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 		
-		protected function selectParent():void
+		protected function selectParent():Boolean
 		{
 			if (_parent)
 			{
-				_parent.selectFromChild(this);
+				if (_selected)
+				{
+					return true;
+				}
+				else
+				{
+					return _parent.selectFromChild();
+				}
 			}
+			return true;
 		}
 		
-		protected function selectFromChild(child:State):void
+		protected function selectFromChild():Boolean
 		{
-			select();
+			return select();
 		}
 	}
 }
